@@ -8,7 +8,7 @@ Below is the virtual representation in setting up my tech environment starting m
 
 2. I download and install Git on my PC as shown below:
 
-    ![Git](./img/Git_CMD.png)
+    ![Git](./img/gitversion.png)
 
 3. I download and install Virtual Box on my PC as shown below:
 
@@ -16,7 +16,7 @@ Below is the virtual representation in setting up my tech environment starting m
 
 4. I download and install Ubuntu Desktop on my virtual box as shown below:
    
-     ![Ubuntu](./img/Ubuntu.png)
+     ![Ubuntu](./img/UbuntuLogin.png)
 
 5. I setup my GitHub account as shown below:
 
