@@ -16,9 +16,13 @@ Single-line comments in Bash start with the `#` symbol. Anything following this 
 
 ![SingleLineComment](./img/01.singlelinecomment.png)
 
+![Execute](./img/02.singlelineExc.png)
+
 ### Using Multiple Single-Line Comments
 
 ![Multilinecomment](./img/02.Multilinecomment.png)
+
+![Multi](./img/04.multi.png)
 
 This approach is straightforward and is commonly used for adding brief descriptions or notes spanning multiple lines.
 
