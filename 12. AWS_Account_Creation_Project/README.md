@@ -67,6 +67,9 @@ a) Now set Root user password.
 b) Then click on Continue.
 
    ![accountupdate](./img/03.verify.png)
+c) choose freeplan
+
+   ![freeplan](./img/04.freeplan.png)
 
 7. Now, the registration process will ask your Personal Information.
 
@@ -153,6 +156,10 @@ a) click 'Sign In' to proceed.
 You have successfully logged in to your Amazon Web Services account.
 
 ![managementconsole](./img/consoleaccount.png)
+
+AWS Management console navigation
+
+![navigation](./img/17navigation.png)
 
 ### Project reflection:
 
