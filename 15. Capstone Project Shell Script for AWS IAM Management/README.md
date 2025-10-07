@@ -128,7 +128,7 @@ AdministratorAccess grants full administrative privileges; use only where approp
 ![code4](./img/07.%20code4.png)
 ![code5](./img/08.%20code5.png)
 
-Script also attacked 
+Script also attached.
 
 ### How to use
 
