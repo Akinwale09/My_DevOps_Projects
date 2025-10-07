@@ -63,6 +63,8 @@ Submit the following deliverables:
 
 Create a Filename: **aws-iam-manager.sh**
 
+![creatfile](./img/00.%20createfileiamfile.png)
+
 **Purpose**: This document contains a production-ready Bash script that automates the creation of IAM users, an admin group, attaches the AWS-managed AdministratorAccess policy to that group, and assigns a list of users to the group. It also explains the design decisions, safety considerations, and how to run/test the script.
 
 ### Quick summary
