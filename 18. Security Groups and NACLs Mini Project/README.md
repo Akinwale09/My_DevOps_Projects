@@ -116,6 +116,53 @@ This practical will be in Two parts-
 
 Just a quick reminder about the subnets we configured in our VPC in the [Previous project](./AWS VPC mini project.md) . In the public subnet, we've created an EC2 instance that is running, hosting our website. Now, let's take a moment to see if we can access the website using its public IP address.
 
+**Steps -**
+
+1. Setting Up a Virtual Private Cloud (VPC)
+
+2. Configuring Subnets within the VPC
+
+3. Creating Internet Gateway and attaching it to VPC
+
+1. Let's navigate to the search bar on our AWS management console
+
+   a) Enter "VPC." Upon locating the relevant result, proceed to click on it, directing you to the Virtual Private Cloud (VPC) page.
+
+   ![vpcsearch](./img/0.2%20vpcsearch.png)
+
+2. Please navigate to the "Create VPC" option and click on it.
+
+   ![createVPC](./img/0.3%20createVPC.png)
+
+3. Select the "VPC only" option, specify the IPv4 CIDR block, and proceed by clicking on the "Create VPC" button.
+
+    ![createvpc](./img/04.%20createvpc.png)
+
+    ![VPC](./img/06.%20myvpc.png)
+    
+Let's navigate to the "Subnets" option located on the left sidebar.
+   
+  a) Upon clicking, you will be directed to the "Subnets" page.
+
+  b) From there, proceed to click on the "Create subnet" button.
+
+  ![subnet](./img/07.%20subnet.png)
+
+1. Select the ID of the VPC that you created in the previous step (Part 1)
+
+![createsubnet](./img/08.%20createsubnet.png)
+![createsubnet](./img/09.%20subnet.png)
+
+3. Now, let's enter the subnet name,  and specify the IPv4 CIDR for the subnet. 
+
+   a) Choose the availability zone
+
+   b) And specify the IPv4 CIDR for the subnet.
+
+   c) To create another subnet, click on the "Add subnet" button.
+
+   ![Subnet1](./img/10.%20subnet1.png)
+
 So this EC2 instance hosts my E-commerce website.
 
 ![Ec2Instance](./img/01.%20EC2Instance.png)
@@ -334,7 +381,7 @@ If we delete both the inbound and outbound rules, essentially, we're closing all
 
 Let’s come to NACL,
 
-1. First navigate to the search bar and search for VPC.
+1. First let's navigate to the search bar and search for VPC.
    
     a) Then click on VPC.
 
@@ -488,9 +535,11 @@ Configuring it:
 
 #### NACL
 
-Let’s remove it so by default it be denied all traffic.
+Let’s remove NACL so by default it will denied all traffic.
 
 ![NACLInbound](./img/64.Outbound.png)
+
+As seen the NACL has been removed and all traficc deny to the subnet.
 
 ![NACLInbound](./img/65.%20Inbound.png)
 
@@ -498,11 +547,15 @@ Additionally, the outbound rule will be removed, defaulting to deny all traffic 
 
 ![NACLOutbound](./img/66.Outbound.png)
 
+All trafiic deny after removing the NACL
+
 ![NACLOutbound](./img/67.%20Outbound.png)
 
 Now, let’s try to access the website,
 
 ![Notabletoaccess](./img/05.%20UnreachableWebAddress.png)
+
+Traffic deny to the webpage as NACL has been removed.
 
 ![NACLAccessDeny](./img/68.OutboundAccessDeny.png)
 
