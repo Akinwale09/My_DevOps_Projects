@@ -17,12 +17,12 @@ Delivering the shell script based on a real-world requirement.
 # ============================
 
 # Ensure AWS credentials are set as environment variables for security.
-# Example: export AWS_ACCESS_KEY_ID="AKIA2ARRMF3OHKJNDIE5"; export AWS_SECRET_ACCESS_KEY="87leYUUYeAZP76xcOiiSaPaa/h9Vj6eEf1LtxRpV"
+# Example: export AWS_ACCESS_KEY_ID="AKIA2ARRMF3OHKJNDIE5"; export AWS_SECRET_ACCESS_KEY="..."
 # Example: export AWS_DEFAULT_REGION="us-east-1"
 
 if [[ -z "$AWS_ACCESS_KEY_ID" || -z "$AWS_SECRET_ACCESS_KEY" || -z "$AWS_DEFAULT_REGION" ]]; then
     echo "❌ ERROR: AWS environment variables not set!"
-    echo "Please run: export AWS_ACCESS_KEY_ID=AKIA2ARRMF3OHKJNDIE5, AWS_SECRET_ACCESS_KEY=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, AWS_DEFAULT_REGION=us-east-1"
+    echo "Please run: export AWS_ACCESS_KEY_ID=AKIA2ARRMF3OHKJNDIE5, AWS_SECRET_ACCESS_KEY=....., AWS_DEFAULT_REGION=us-east-1"
     exit 1
 fi
 
