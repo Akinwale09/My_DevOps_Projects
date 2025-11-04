@@ -104,5 +104,40 @@ v. Log in to jenkins console
 ![WelcometoJenkins](./img/14.%20WelcometoJenkins.png)
 
 
+### Creating a Freestyle Project
 
-End. 
+Let's create our first build job
+
+i. From the dashboard menu on the left side, click on new item
+
+![JenkinsProject](./img/15.%20JenkinsJob.png)
+
+ii. Create a freestyle project and name it "my-first-job"
+
+![MyfirstJob](./img/16.%20MyJob.png)
+
+### Connecting Jenkins To Our Source Code Management
+
+Now that we have created a freestyle project, let connect jenkins with github.
+
+i. Create a new github repository called jenkins-scm with a README.md file
+
+![JenkinsRepo](./img/17.%20GitRepo.png)
+
+ii. Connect jenkins to jenkins-scm repository by pasting the repository url in the area selected below. Make sure your current branch is main
+
+![JenkinsConnect](./img/18.%20JenkinsConnection.png)
+![JeckingConnect](./img/19,%20JenkinsConnection.png)
+![Connet](./img/20.%20Connect.png)
+![Connect](./img/21.%20connect.png)
+
+iii. Save configuration and run "build now" to connect jenkins to our repository
+
+![BuildNow](./img/22.%20BuildNow.png)
+
+Projcet Build 
+
+![BuildProject](./img/23.%20BuildSeccess.png)
+
+
+End.
