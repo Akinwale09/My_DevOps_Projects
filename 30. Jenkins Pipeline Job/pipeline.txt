@@ -1,0 +1,30 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Connect To Github') {
+            steps {
+                // Clone the GitHub repository
+                   checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/Akinwale09/jenkins-scm.git']])
+            }
+        }
+
+        stage('Build Docker Image') {
+            steps {
+                script {
+                    // Build Docker image from Dockerfile in current directory
+                    sh 'docker build -t dockerfile .'
+                }
+            }
+        }
+
+        stage('Run Docker Container') {
+            steps {
+                script {
+                    // Run the container on port 8081 mapped to port 80 inside container
+                    sh 'docker run -itd -p 8081:80 dockerfile'
+                }
+            }
+        }
+    }
+}
