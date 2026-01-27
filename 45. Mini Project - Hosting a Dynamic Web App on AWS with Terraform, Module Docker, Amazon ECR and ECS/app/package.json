@@ -1,0 +1,15 @@
+{
+  "name": "ecs-webapp",
+  "version": "1.0.0",
+  "description": "Simple Node.js app for ECS",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.19.2"
+  }
+}
+
