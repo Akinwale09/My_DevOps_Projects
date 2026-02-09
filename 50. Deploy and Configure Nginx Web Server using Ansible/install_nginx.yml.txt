@@ -1,0 +1,108 @@
+[web_servers]
+target ansible_host=54.221.50.28 ansible_user=ubuntu 
+
+install_nginx.yml
+
+- name: Install Nginx on the server
+  hosts: web_servers
+  become: yes
+  tasks:
+    - name: Install Nginx
+      apt:
+        name: nginx
+        state: present
+        update_cache: yes
+
+    - name: Ensure Nginx is running
+      service:
+        name: nginx
+        state: started
+        enabled: yes
+
+
+Configure a Custom Nginx Website Using Ansible
+
+
+- name: Configure Nginx website
+  hosts: web_servers
+  become: yes
+
+  vars:
+    site_root: /var/www/mywebsite
+    site_conf: /etc/nginx/sites-available/mywebsite
+    site_link: /etc/nginx/sites-enabled/mywebsite
+
+  tasks:
+    - name: Ensure Nginx is installed
+      ansible.builtin.package:
+        name: nginx
+        state: present
+
+    - name: Ensure Nginx is enabled and running
+      ansible.builtin.service:
+        name: nginx
+        state: started
+        enabled: yes
+
+    - name: Create website root directory
+      ansible.builtin.file:
+        path: "{{ site_root }}"
+        state: directory
+        mode: '0755'
+
+    - name: Deploy HTML content
+      ansible.builtin.copy:
+        dest: "{{ site_root }}/index.html"
+        mode: '0644'
+        content: |
+          <html>
+          <head><title>Welcome to My Website</title></head>
+          <body>
+          <h1>Hello from Nginx!</h1>
+          </body>
+          </html>
+
+    - name: Write Nginx server block
+      ansible.builtin.copy:
+        dest: "{{ site_conf }}"
+        mode: '0644'
+        content: |
+          server {
+              listen 80;
+              server_name _;
+              root /var/www/mywebsite;
+              index index.html;
+
+              location / {
+                  try_files $uri $uri/ =404;
+              }
+          }
+      notify: nginx reload
+
+    - name: Enable the Nginx server block (symlink)
+      ansible.builtin.file:
+        src: "{{ site_conf }}"
+        dest: "{{ site_link }}"
+        state: link
+        force: yes
+      notify: nginx reload
+
+    - name: Remove default Nginx server block
+      ansible.builtin.file:
+        path: /etc/nginx/sites-enabled/default
+        state: absent
+      notify: nginx reload
+
+  handlers:
+    # 1) Test the full Nginx configuration. If this fails, play stops here.
+    - name: Nginx | test config
+      listen: nginx reload
+      ansible.builtin.command: nginx -t
+      changed_when: false
+
+    # 2) Only runs if the previous handler succeeded
+    - name: Nginx | reload
+      listen: nginx reload
+      ansible.builtin.service:
+        name: nginx
+        state: reloaded
