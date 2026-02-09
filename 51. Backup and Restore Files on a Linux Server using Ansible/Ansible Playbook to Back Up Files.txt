@@ -1,0 +1,70 @@
+Ansible Playbook to Back Up Files
+
+---
+- name: Backup files on the server (from control node to remote)
+  hosts: linux_servers
+  become: true
+  vars:
+    backup_dir: /backup
+  tasks:
+    - name: Ensure backup directory exists
+      ansible.builtin.file:
+        path: "{{ backup_dir }}"
+        state: directory
+        mode: '0755'
+
+    # Copy a local file (control node) to the remote backup directory
+    - name: Copy configure_nginx.yml from control node to remote /backup
+      ansible.builtin.copy:
+        src: ./configure_nginx.yml          # path on the CONTROL node (relative is fine)
+        dest: "{{ backup_dir }}/configure_nginx.yml"
+        mode: '0644'
+        # remote_src omitted or false; default means src is local to the control node
+
+
+Old
+
+- name: Backup files on the server
+  hosts: linux_servers
+  tasks:
+    - name: Create backup directory
+      file:
+        path: /backup
+        state: directory
+        mode: '0755'
+
+    - name: Copy files to backup directory
+      copy:
+        src: /home/ubuntu/ansible/configure_nginx.yml
+        dest: /backup/
+        remote_src: yes
+
+
+Ansible Playbook to Restore Files
+
+---
+- name: Restore file from backup to target path
+  hosts: linux_servers
+  become: true
+  tasks:
+    - name: Copy back to original path on remote
+      ansible.builtin.copy:
+        src: /backup/configure_nginx.yml    # lives on REMOTE
+        dest: /home/ubuntu/ansible/configure_nginx.yml
+        remote_src: true
+        mode: '0644'
+
+
+
+Old
+
+- name: Restore files from backup
+  hosts: linux_servers
+  tasks:
+    - name: Copy files back to original location
+      copy:
+        src: /backup/
+        dest: /home/ubuntu/ansible/configure_nginx.yml
+        remote_src: yes
+
+
